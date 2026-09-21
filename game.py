@@ -1,4 +1,6 @@
 import random
+import os
+import pygame
 
 classes_str = {
     "1": "Guerreiro",
@@ -9,6 +11,18 @@ classes_str = {
     "6": "Ninja",
     "7": "Lutador"
 }
+
+mapas_str = {
+    "1": "Floresta",
+    "2": "Deserto",
+    "3": "Caverna",
+    "4": "Montanhas Gélidas",
+    "5": "Vulcão",
+    "6": "Ninho dos Dragões"
+}
+
+def clear_terminal():
+    os.system('cls' if os.name == 'nt' else 'clear')
 
 def player_creation():
 
@@ -94,6 +108,38 @@ def player_creation():
     }
 
     status_jogador = status_classes[classes_str[classe_escolhida]]
+
+    if nome_jogador and classe_escolhida and status_jogador:
+        choose_map()
+
+mapas_desbloqueados = []
+
+def choose_map():
+    clear_terminal()
+    print(f"| Mapas\n"
+          f"| "
+          f"\n| Floresta          -> 1"
+          f"\n| Deserto           -> 2"
+          f"\n| Caverna           -> 3"
+          f"\n| Montanhas Gélidas -> 4"
+          f"\n| Vulcão            -> 5"
+          f"\n| Ninho dos Dragões -> 6")
+
+    if mapas_desbloqueados:
+        mapa_escolhido = input("Escolha um mapa para se aventurar -> ")
+        while mapa_escolhido not in mapas_desbloqueados:
+            print(f"\nMapa ainda não desbloqueado, enfrente os anteriores para desbloquear mais mapas.")
+            mapa_escolhido = input("Escolha um mapa para se aventurar -> ")
+        game()
+    else:
+        mapas_desbloqueados.append(mapas_str["1"])
+        return choose_map()
+
+    return mapa_escolhido
+
+def game():
+
+    return 0
 
 turnos = 0
 turno_atual = 1
