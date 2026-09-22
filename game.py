@@ -21,11 +21,15 @@ mapas_str = {
     "6": "Ninho dos Dragões"
 }
 
+def tocar_musica(mapa):
+    if mapa == "Floresta":
+        return 0
+
 def clear_terminal():
     os.system('cls' if os.name == 'nt' else 'clear')
 
 def player_creation():
-
+    clear_terminal()
     nome_jogador = input("Olá, qual o seu nickname? -> ")
     print(f"| Seja bem-vindo, {nome_jogador}!\n"
           f"| "
@@ -138,6 +142,7 @@ def choose_map():
     return mapa_escolhido
 
 def game():
+
 
     return 0
 
